@@ -2,6 +2,11 @@
 #include "nanovg.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
+
+#define printf
+
+static HDC g_hDC = nullptr;
 
 static int my_renderCreate(void* uptr)
 {
@@ -44,6 +49,8 @@ static void my_renderFlush(void* uptr)
 
 static void PrintVertex(int i, const NVGvertex &vert)
 {
+	::LineTo(g_hDC, vert.x + 100, vert.y + 100);
+
 	printf("    %4d:%10g,%10g,%4g,%4g\n",
 		i,
 		vert.x, vert.y,
@@ -104,6 +111,12 @@ static void my_renderDelete(void* uptr)
 //////////////////////////////////////////////////////////////////////////
 int main()
 {
+	HWND hWnd = ::GetConsoleWindow();
+	g_hDC = ::GetDC(hWnd);
+	HPEN hOldPen = static_cast<HPEN>(::SelectObject(g_hDC, GetStockObject(DC_PEN)));
+	::DeleteObject(hOldPen);
+	::MoveToEx(g_hDC, 0, 0, nullptr);
+
 	NVGparams params{};
 	params.renderCreate = my_renderCreate;
 	params.renderCreateTexture = my_renderCreateTexture;
@@ -122,20 +135,24 @@ int main()
 
 	NVGcontext *ctx = nvgCreateInternal(&params);
 
-	nvgBeginFrame(ctx, 1280, 720, 1);
+	nvgBeginFrame(ctx, 1280, 720, 0.1);
 	{
 		nvgBeginPath(ctx);
-		nvgCircle(ctx, 10, 10, 15);
+		nvgCircle(ctx, 100, 100, 100);
 		nvgFillColor(ctx, nvgRGBA(220, 160, 0, 200));
+		::SetDCPenColor(g_hDC, RGB(220, 160, 0));
 		nvgFill(ctx);
 
 		nvgStrokeColor(ctx, nvgRGBA(220, 160, 0, 255));
-		nvgStrokeWidth(ctx, 3.0f);
+		nvgStrokeWidth(ctx, 30.0f);
+		::SetDCPenColor(g_hDC, RGB(255, 0, 0));
 		nvgStroke(ctx);
 	}
 	nvgEndFrame(ctx);
 
 	nvgDeleteInternal(ctx);
+
+	ReleaseDC(hWnd, g_hDC);
 
 	return 0;
 }
