@@ -26,7 +26,7 @@ solution "nanovg"
 
 		kind "ConsoleApp"
 		language "C"
-		files { "example/example_gl2.c", "example/demo.c", "example/perf.c" }
+		files { "example/example_gl2.c", "example/demo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -37,8 +37,8 @@ solution "nanovg"
 			 defines { "NANOVG_GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -55,7 +55,7 @@ solution "nanovg"
 	project "example_gl3"
 		kind "ConsoleApp"
 		language "C"
-		files { "example/example_gl3.c", "example/demo.c", "example/perf.c" }
+		files { "example/example_gl3.c", "example/demo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -66,8 +66,8 @@ solution "nanovg"
 			 defines { "NANOVG_GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -85,7 +85,7 @@ solution "nanovg"
 		kind "ConsoleApp"
 		language "C"
 		defines { "DEMO_MSAA" }
-		files { "example/example_gl2.c", "example/demo.c", "example/perf.c" }
+		files { "example/example_gl2.c", "example/demo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -96,8 +96,8 @@ solution "nanovg"
 			 defines { "NANOVG_GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -115,7 +115,7 @@ solution "nanovg"
 		kind "ConsoleApp"
 		language "C"
 		defines { "DEMO_MSAA" }
-		files { "example/example_gl3.c", "example/demo.c", "example/perf.c" }
+		files { "example/example_gl3.c", "example/demo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -126,8 +126,8 @@ solution "nanovg"
 			 defines { "NANOVG_GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -144,7 +144,7 @@ solution "nanovg"
 	project "example_fbo"
 		kind "ConsoleApp"
 		language "C"
-		files { "example/example_fbo.c", "example/perf.c" }
+		files { "example/example_fbo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -154,8 +154,8 @@ solution "nanovg"
 			 links { "GL", "GLU", "m", "GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -169,10 +169,10 @@ solution "nanovg"
 			defines { "NDEBUG" }
 			flags { "Optimize", "ExtraWarnings"}
 
-	project "example_gles2"
+--[[	project "example_gles2"
 		kind "ConsoleApp"
 		language "C"
-		files { "example/example_gles2.c", "example/demo.c", "example/perf.c" }
+		files { "example/example_gles2.c", "example/demo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -182,8 +182,8 @@ solution "nanovg"
 			 links { "GL", "GLU", "m", "GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -200,7 +200,7 @@ solution "nanovg"
 	project "example_gles3"
 		kind "ConsoleApp"
 		language "C"
-		files { "example/example_gles3.c", "example/demo.c", "example/perf.c" }
+		files { "example/example_gles3.c", "example/demo.c", "example/perf.c", "example/gl/glew.c" }
 		includedirs { "src", "example" }
 		targetdir("build")
 		links { "nanovg" }
@@ -210,8 +210,8 @@ solution "nanovg"
 			 links { "GL", "GLU", "m", "GLEW" }
 
 		configuration { "windows" }
-			 links { "glfw3", "gdi32", "winmm", "user32", "GLEW", "glu32","opengl32", "kernel32" }
-			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS" }
+			 links { "glfw3", "gdi32", "winmm", "user32","opengl32", "kernel32" }
+			 defines { "NANOVG_GLEW", "_CRT_SECURE_NO_WARNINGS", "GLEW_STATIC" }
 
 		configuration { "macosx" }
 			links { "glfw3" }
@@ -224,3 +224,4 @@ solution "nanovg"
 		configuration "Release"
 			defines { "NDEBUG" }
 			flags { "Optimize", "ExtraWarnings"}
+]]--
