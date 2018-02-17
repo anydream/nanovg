@@ -251,7 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="nanovg.vcxproj">
-      <Project>{4EFC8F0F-3A9E-BAE5-2359-CE390F9A4136}</Project>
+      <Project>{e022ed20-3723-4e58-8f35-1a37d4103c73}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
