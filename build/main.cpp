@@ -135,7 +135,7 @@ int main()
 
 	NVGcontext *ctx = nvgCreateInternal(&params);
 
-	nvgBeginFrame(ctx, 1280, 720, 0.1);
+	nvgBeginFrame(ctx, 1, 1, 1);
 	{
 		nvgBeginPath(ctx);
 		nvgCircle(ctx, 100, 100, 100);
